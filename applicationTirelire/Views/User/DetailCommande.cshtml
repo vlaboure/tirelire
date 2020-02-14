@@ -1,0 +1,40 @@
+﻿@model applicationTirelire.Models.Commande
+@using applicationTirelire.Models
+
+@{
+    ViewBag.Title = "Detail de mes Commande";
+}
+
+<h2>DetailCommande</h2>
+
+<div>
+    <h4>DetailCommande</h4>
+    <hr />
+    <table>
+        <tr class="text-center">
+            <th class="col-lg-2">Produit</th>
+            <th></th>@*//aviis*@
+            <th class="col-lg-2">Fournisseur</th>
+            <th class="col-lg-2">Prix</th>
+            <th class="col-lg-2">Quantité</th>
+        </tr>
+        @foreach (var det in Model.DetailCommandes)
+        {
+            <tr class="text-center">
+                <td class="col-lg-2">@det.Produit.nomProd</td>
+                    @*Si pas d'avis déposé on peut déposer son avis*@
+                <td>@if(det.Produit.Avis.Where(a => a.IdUser == ((User)Session["User"]).IdUser).Count() == 0) 
+                {
+                    <span>@Html.ActionLink("Déposer un avis","DeposerAvis",new {id=det.Produit.IdProd })</span>
+                }
+                </td>
+                <td class="col-lg-2">@det.Produit.Fournisseur.nomFourn</td>
+                <td class="col-lg-2">@det.Produit.PrixProd</td>
+                <td class="col-lg-2">@det.quantite</td>
+            </tr>
+         }
+        </table>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "listerCommandes","User")
+</p>

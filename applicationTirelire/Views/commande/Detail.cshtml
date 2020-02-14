@@ -1,0 +1,40 @@
+﻿@model applicationTirelire.Models.Commande
+        @*Detail commande pour l'admin*@
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div>
+    <h4>Commande</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.nomUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.nomUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateCommande)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCommande)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statusCommande)
+        </dt>
+
+        <dd>
+            @((applicationTirelire.Outil.EtatCmd)Model.statusCommande).ToString())
+
+
+        </dd>
+
+    </dl>
+    <div class="text-center">
+        @Html.ActionLink("Back to List", "Lister")
+    </div>
+</div>

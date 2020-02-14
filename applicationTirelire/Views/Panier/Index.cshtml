@@ -1,0 +1,126 @@
+﻿@model applicationTirelire.Models.Commande
+@using applicationTirelire.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<script>
+    $(function(){ majTot(); })
+    function  majTot(){
+        $.ajax({
+            type: "GET",
+            url:'@Url.Action("CalculerTot","Panier")',
+            success: function (data) {
+                $('#total').html(data);
+                majLivr();
+                totLivr();
+            }
+        });
+    }
+    $(function(){ totLivr(); })
+    function  totLivr(){
+        $.ajax({
+            type: "GET",
+            url:'@Url.Action("CalculLivraison","Panier")',
+            success: function (data) {
+                $('#livr').html(data);
+            }
+        });
+    }
+
+    $(function(){ majLivr(); })
+    function  majLivr(){
+        $.ajax({
+            type: "GET",
+            url:'@Url.Action("TotAvecLivraison","Panier")',
+            success: function (data) {
+                $('#totLivr').html(data);
+            }
+        });
+    }
+
+    @*$(function () { supprimer(); })
+    function  supprimer(){
+        $.ajax({
+            type: "GET",
+            url:'@Url.Action("Delete","Panier")'
+
+            }
+        });
+    }*@
+</script>
+
+<h2>Panier</h2>
+<table>
+    <tr>
+        <th class="col-lg-1 text-center"></th>
+        <th class="col-lg-1 text-center"></th>
+        <th class="col-lg-2 text-center">Produit</th>
+        <th class="col-lg-2 text-center">Fournisseur</th>
+        <th class="col-lg-1 text-center">Prix unit</th>
+        <th class="col-lg-2 text-center">Quantité / Montant</th>
+        <th class="col-lg-1 text-center"></th>
+        <th class="col-lg-1 text-center"></th>
+    </tr>
+    @foreach (var art in Model.DetailCommandes)
+    {
+        <tr id="@("r"+art.IdProd)">
+            <td class="col-lg-1 text-center">
+                @Ajax.ActionLink(" ", "Delete", new { id = art.IdProd },
+                new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTot", InsertionMode = InsertionMode.Replace, UpdateTargetId = "r" + art.IdProd },
+                new { @class = "glyphicon glyphicon-remove" })
+            </td>
+            <td>
+                <img class="photo-index-card-img" src="@Url.Content("~/Images/"+ art.IdProd +"_"+ art.Produit.UrlImage)" width="100" />
+            </td>
+            <td class="col-lg-2 text-center">
+                @art.Produit.nomProd
+            </td>
+            <td class="col-lg-2 text-center">
+                @art.Produit.Fournisseur.nomFourn
+            </td>
+            <td class="col-lg-1 text-center">
+                @art.Produit.PrixProd
+            </td>
+            <td class="col-lg-2 text-center" id="@("q" + art.IdProd)">
+                <span>
+                    <span class="col-md-4"> @art.quantite</span>    <span class="col-md-6">  @(art.Produit.PrixProd * art.quantite)</span>
+                </span>
+            </td>
+            <td class="col-lg-1 text-center">@Ajax.ActionLink(" ", "Incrementer", new { id = art.IdProd }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTot", InsertionMode = InsertionMode.Replace, UpdateTargetId = "q" + art.IdProd }, new { @class = "glyphicon glyphicon-plus" })</td>
+            <td class="col-lg-1 text-center">@Ajax.ActionLink(" ", "Decrementer", new { id = art.IdProd }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTot", InsertionMode = InsertionMode.Replace, UpdateTargetId = "q" + art.IdProd }, new { @class = "glyphicon glyphicon-minus" })</td>
+
+        </tr>
+    }
+
+</table>
+<br />
+
+<div>
+    <input type="button" class="btn btn-success" value="Passer commande"
+           onclick="location.href='@Url.Action("Confirmation", "Commande")'" />
+</div>
+
+<br />
+<div class="text-center">
+    @Html.ActionLink("Retour à la galerie", "Galerie", "Produit")
+</div>
+
+<footer>
+    <br />
+    <div class="text-center"> <h4>Prix de la livraison : 3 € par 1.5 kg</h4></div>
+    <div class="row text-right">
+        <h3>Total HT pannier  :  <span id="total"></span><span>€</span></h3>
+    </div>
+
+    <div class="row text-right">
+        <h3>Total livraison  :  <span id="livr"></span><span>€</span></h3>
+    </div>
+
+
+    <div class="row text-right">
+        <h3>Total General  :  <span id="totLivr"></span><span>€</span></h3>
+    </div>
+
+</footer>

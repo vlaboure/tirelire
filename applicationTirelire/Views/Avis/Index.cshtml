@@ -1,0 +1,79 @@
+﻿@model IEnumerable<applicationTirelire.Models.Avi>
+@{
+    ViewBag.Title = "Avis";
+}
+<h2>Liste des avis</h2>
+<body>
+    <br />
+    <br />
+    <p>
+        @Html.ActionLink("Afficher tous les avis", "Index") |
+        @Html.ActionLink("Afficher les avis nonapprouvés", "AvisNonAppr") |
+        @Html.ActionLink("Afficher les avis refusés", "AvisRefuse")
+    </p>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produit.nomProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.nomUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.texte)
+            </th>
+            <th>
+                Statut
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            <image src="@Url.Content("~/Images/" + item.IdProd + "_" + item.Produit.UrlImage)" height="30" )"></image>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Produit.nomProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.nomUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.texte)
+        </td>
+        <td id="@(item.IdAvis)etat">
+            @(((applicationTirelire.Outil.EtatsAvis)item.statusAvis).ToString())
+        </td>
+        <td>
+            @if (item.statusAvis != 2)
+            {
+                <span>
+                    @Ajax.ActionLink("Approuver", "Approuver", new { id = item.IdAvis }, new AjaxOptions { Confirm = "Voulez-vous vraiment approuver cet avis?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdAvis + "etat" }) |
+                </span>
+            }
+            @if (item.statusAvis != 0)
+            {
+                <span>
+                    @Ajax.ActionLink("Refuser", "Refuser", new { id = item.IdAvis }, new AjaxOptions { Confirm = "Voulez-vous vraiment refuser cet avis?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdAvis + "etat" }) |
+                </span>
+            }
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.IdAvis }, new AjaxOptions { Confirm = "Voulez-vous vraiment supprimer cet avis?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdAvis + "etat" }) |
+        </td>
+    </tr>
+        }
+    </table>
+</body>

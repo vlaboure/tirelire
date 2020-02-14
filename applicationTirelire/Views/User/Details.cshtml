@@ -1,0 +1,93 @@
+﻿@model applicationTirelire.Models.User
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nomUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrenomUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrenomUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sexe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sexe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emailUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telephoneUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telephoneUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paysUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paysUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.villeUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.villeUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresseUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresseUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codePostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codePostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statusUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statusUser)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdUser }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

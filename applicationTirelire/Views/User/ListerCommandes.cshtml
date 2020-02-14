@@ -1,0 +1,46 @@
+﻿@model IEnumerable<applicationTirelire.Models.Commande>
+
+@{
+    ViewBag.Title = "ListerCommandes";
+}
+
+<h2 class="text-center">Commandes du client <span>@ViewBag.Nom</span></h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.nomUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateCommande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statusCommande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixTotal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.nomUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateCommande)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.statusCommande)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixTotal)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "DetailCommande", new { id=item.IdCommande }) |
+        </td>
+    </tr>
+}
+
+</table>

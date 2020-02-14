@@ -1,0 +1,102 @@
+﻿@model applicationTirelire.Models.Commande
+
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+<h2>Confirmation</h2>
+
+<div>
+    <h4>Commande</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.nomUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.nomUser)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.adresseUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.adresseUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.villeUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.villeUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.codePostal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.codePostal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.paysUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.paysUser)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.telephoneUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.telephoneUser)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCommande)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixTotal)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    <table>
+
+        <tr class="text-center">
+            <th class="col-lg-2 text-center">Produit</th>
+            <th class="col-lg-2 text-center">Prix</th>
+            <th class="col-lg-4 text-center">Fournisseur</th>
+            <th class="col-lg-4 text-center">Quantité</th>
+            <th class="col-lg-1 text-center">Montant</th>
+        </tr>
+        @foreach (var detail in Model.DetailCommandes)
+        {
+            <tr class="text-center">
+                <td class="col-lg-2">@detail.Produit.nomProd</td>
+                <td class="col-lg-2">@detail.Produit.PrixProd</td>
+                <td class="col-lg-2">@detail.Produit.Fournisseur.nomFourn</td>
+                <td class="col-lg-2">@detail.quantite</td>
+                <td class="col-lg-2">@(detail.Produit.PrixProd * detail.quantite)</td>
+            </tr>
+
+        }
+
+
+    </table>
+</div>
+<p>
+    <div class="text-right">Montant de la commande : @ViewBag.Total</div>
+</p>
+<br />
+<br />
+<p>
+    <input type="button" class="btn btn-success" value="Valider cette commande"
+           onclick="location.href='@Url.Action("Validation", "Commande")'" />
+
+</p>

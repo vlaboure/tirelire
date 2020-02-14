@@ -1,0 +1,109 @@
+﻿@model IEnumerable<applicationTirelire.Models.Produit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste de tous les produits</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           <span>Image</span>
+        <th>
+            @Html.DisplayNameFor(model => model.nomProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorie.Categorie1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fournisseur.nomFourn)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PrixProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.couleur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.capacite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.poids)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longeur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.largeur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hauteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descriptionProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statusProd)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*<img class="photo-index-card-img" src="@Url.Action("GetImage","Produit", new { idProduit = item.idProd })" />*@
+                <img class="photo-index-card-img" src="@Url.Content("~/Images/"+item.IdProd+"_"+item.UrlImage)" width="50" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomProd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorie.Categorie1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fournisseur.nomFourn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixProd)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.couleur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.capacite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.poids)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.longeur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.largeur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hauteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descriptionProd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statusProd)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdProd }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdProd }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdProd })
+            </td>
+        </tr>
+    }
+
+</table>

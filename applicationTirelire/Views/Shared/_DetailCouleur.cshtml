@@ -1,0 +1,27 @@
+﻿
+@model IEnumerable<applicationTirelire.Models.Produit>
+@{
+    ViewBag.Title = "_DetailCouleur";
+}
+
+    <div >
+        <h4>Produits de la même couleur </h4>
+
+        @foreach (var well in Model)
+        {
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.DisplayFor(modelitem => well.couleur)
+                </div>
+                @if (well.UrlImage != null)
+                {
+                    <div>
+                        <img class="photo-index-card-img" src="@Url.Content("~/images/" + well.IdProd + "_" + well.UrlImage)" width="50" />
+                    </div>
+                }
+            </div>
+        }
+
+
+
+    </div>

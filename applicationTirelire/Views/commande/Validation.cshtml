@@ -1,0 +1,16 @@
+﻿@model applicationTirelire.Models.Commande
+@{
+    ViewBag.Title = "Validation";
+}
+
+<h2>Validation</h2>
+<div>
+    <h4>Commande</h4>
+    <div>@(((applicationTirelire.Models.User)Session["User"]).PrenomUser)</div>
+    <div>@(((applicationTirelire.Models.User)Session["User"]).nomUser)</div>
+
+</div>
+<p>
+    @Html.ActionLink("Retour vers la galerie", "Galerie", "Produit")
+</p>
+

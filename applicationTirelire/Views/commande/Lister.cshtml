@@ -1,0 +1,55 @@
+﻿@model IEnumerable<applicationTirelire.Models.Commande>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.nomUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateCommande)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PrixTotal)
+        </th>
+        <th>
+            Statut de la commande
+        </th>
+        <th>
+           
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+<tr id="@("r"+item.IdCommande)">
+    <td>
+        @Html.DisplayFor(modelItem => item.User.nomUser)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dateCommande)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.PrixTotal)
+    </td>
+
+    <td id="@("r"+item.IdCommande)">
+        @(((applicationTirelire.Outil.EtatCmd)item.statusCommande).ToString())
+    </td>
+
+    <td>
+        @Html.ActionLink("Details", "Detail", new { id = item.IdCommande })
+        @*non accessible pour le client*@
+        @Ajax.ActionLink("Traiter", "Traiter", new { id = item.IdCommande }, new AjaxOptions { Confirm = "Voulez cous avancer la commande", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdCommande + "etat" })
+        @Ajax.ActionLink("Supprimer", "Supprimer", new { id = item.IdCommande }, new AjaxOptions { Confirm = "Voulez cous supprimer cette commande",HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "r"+item.IdCommande})
+        @Ajax.ActionLink("Désactiver", "Suspendre", new { id = item.IdCommande }, new AjaxOptions { Confirm = "Voulez cous suspn cette commande", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdCommande + "etat"})
+
+    </td>
+</tr>
+}
+
+</table>

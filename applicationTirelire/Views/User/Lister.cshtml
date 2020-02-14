@@ -1,0 +1,129 @@
+﻿@model IEnumerable<applicationTirelire.Models.User>
+
+@{
+    ViewBag.Title = "Lister";
+}
+
+    <br />
+    <div class="col-12 text-center">
+        <div id="detail"></div>
+        <div class="btn btn-danger" type="button" data-toggle="collapse" data-target="#produit" style="text-align:center;">
+            Top 5 des meilleurs clients
+        </div>
+        <div class="collapse" id="produit">
+            @*Top 5 des meilleurs clients*@
+                @Html.Action("_TopUser", "User")
+        </div>
+
+    </div>
+
+
+
+<div class="col-12">
+    <h2 class="text-center">Lister tous les clients</h2>
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrenomUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sexe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emailUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telephoneUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.paysUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.villeUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.adresseUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codePostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.statusUser)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrenomUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sexe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.emailUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telephoneUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.paysUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.villeUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adresseUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codePostal)
+                </td>
+                <td id="@(item.IdUser)etat">
+                    @Html.DisplayFor(modelItem => item.statusUser)
+                </td>
+                <td>
+                    @Html.ActionLink("Editer", "Edit", new { id = item.IdUser }) |
+
+                    @*@if (item.statusUser == 1)*@
+                    <span>@Ajax.ActionLink("Bloquer", "ModifStatus", new { id = item.IdUser, status = 0 }, new AjaxOptions { Confirm = "Voulez vous débloquer ce client", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdUser + "etat" })</span>
+                    @*else
+                        {*@
+
+                    <span>@Ajax.ActionLink("Débloquer", "ModifStatus", new { id = item.IdUser, status = 1 }, new AjaxOptions { Confirm = "Voulez vous bloquer ce client", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdUser + "etat" })</span>
+                    @*}*@
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#btn').click(function () {
+            $('#btn').fadeToggle('500');
+            $('#bn').click;
+
+        });
+    });
+    $(document).ready(function () {
+        $('#bn').click(function () {
+            $('#bn').fadeToggle('500');
+            $('#btn').click
+        });
+    });
+
+</script>

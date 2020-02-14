@@ -1,0 +1,43 @@
+﻿@model IEnumerable<applicationTirelire.Models.Produit>
+
+@{
+    ViewBag.Title = "Galerie";
+}
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+
+
+<div class="col-md-12 galerie"style="margin:0">
+    <h3 class="text-center">Galerie</h3>
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 photos">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="~/Produit/Details/@item.IdProd">
+                        <img src="@Url.Content("~/Images/" + item.IdProd + "_" + item.UrlImage)" height="150" />
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8" style="text-align:center"> @Html.DisplayFor(modelItem => item.nomProd)</div>
+                <div class="text-danger col-md-4" style="text-align:left"> @Html.DisplayFor(modelItem => item.PrixProd)€</div>
+            </div>
+
+            @*<div class="row aler">
+                    <div class="col-md-3"></div>
+                    @Html.ActionLink("Details", "Details", new { id = item.IdProd }, new { @class = "alert-dismissable col-md-4", @style = "text-align:center" })
+                    <div class="col-md-3"></div>
+                </div>*@
+        </div>
+    }
+
+    </div>
+    <div class="col-md-12 couleur text-center">
+        @Html.Action("_Topp", "Produit")
+</div>

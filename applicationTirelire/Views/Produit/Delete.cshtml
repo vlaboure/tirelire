@@ -1,0 +1,131 @@
+﻿@model applicationTirelire.Models.Produit
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3 class="text-center">Are you sure you want to delete <span>@Model.nomProd</span></h3>
+<div>
+    <h4>Produit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.Categorie1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.Categorie1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fournisseur.nomFourn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fournisseur.nomFourn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statusProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statusProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrlImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.couleur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.couleur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.capacite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.capacite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.poids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.poids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.largeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.largeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hauteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hauteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descriptionProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descriptionProd)
+        </dd>
+
+    </dl>
+    <div id="photo" class="bloc btn" data-toggle="collapse" data-target="#myModal">
+        <img class="photo-index-card-img" src="@Url.Content("~/Images/"+ Model.IdProd +"_"+ Model.UrlImage)" width="100" />
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

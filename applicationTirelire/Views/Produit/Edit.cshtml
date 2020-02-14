@@ -1,0 +1,204 @@
+﻿@model applicationTirelire.Models.Produit
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Produit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <script type='text/javascript'>
+        //<![CDATA[
+        $(window).load(function () {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#imgInp").change(function () {
+                readURL(this);
+            });
+        });//]]>
+
+    </script>
+    <div class="form-horizontal">
+        <h4>Produit</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdProd)
+
+        @*champ caché pour se réferer à l'image*@
+        @Html.HiddenFor(model => model.UrlImage);
+        <div class="col-md-5">
+            <div class="form-group">
+                @Html.LabelFor(model => model.nomProd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nomProd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nomProd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PrixProd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PrixProd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PrixProd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.statusProd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.statusProd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.statusProd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.couleur, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.couleur, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.couleur, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.capacite, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.capacite, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.capacite, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.poids, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.poids, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.poids, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.longeur, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.longeur, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.longeur, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.largeur, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.largeur, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.largeur, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.hauteur, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.hauteur, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.hauteur, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdFourn, "Fournisseur", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("IdFourn", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdFourn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Idcategorie, "Idcategory", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Idcategorie", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Idcategorie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.descriptionProd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.descriptionProd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.descriptionProd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.UrlImage, htmlAttributes: new { @class = "control-label col-md-2",id="url" })*@
+                <div class="col-md-10">
+                    @*<input type="file" id="imginp" />*@
+                    @*<img class="photo-index-card-img" id="blah"src="#" alt="blabla" width="200" />*@
+                    <span><input asp-for="#" type="file" id="blah" name="fichier" /></span>
+
+                    <img class="photo-index-card-img" src="@Url.Content("~/Images/"+ Model.IdProd +"_"+ Model.UrlImage)" width="200" />
+                    <div class="preview">
+
+                    </div>
+                    @Html.EditorFor(model => model.UrlImage, new { htmlAttributes = new { @class = "form-control", @id = "url" } })
+                    @Html.ValidationMessageFor(model => model.UrlImage, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+    let url = document.querySelector('#url')
+    url.addEventListener('change', updateImageDisplay);
+    preview.addEventListener('.preview', updateImageDisplay);
+
+function updateImageDisplay() {
+  while(preview.firstChild) {
+    preview.removeChild(preview.firstChild);
+  }
+    console.log('ici');
+  var curFiles = input.files;
+  if(curFiles.length === 0) {
+    var para = document.createElement('p');
+    para.textContent = 'No files currently selected for upload';
+    preview.appendChild(para);
+  } else {
+    var list = document.createElement('ol');
+    preview.appendChild(list);
+    for(var i = 0; i < curFiles.length; i++) {
+      var listItem = document.createElement('li');
+      var para = document.createElement('p');
+      
+    para.textContent = 'File name ' + curFiles[i].name + ', file size ' + returnFileSize(curFiles[i].size) + '.';
+    var image = document.createElement('img');
+    image.src = window.URL.createObjectURL(curFiles[i]);
+
+    listItem.appendChild(image);
+    listItem.appendChild(para);
+
+      list.appendChild(listItem);
+    }
+  }
+}
+</script>
+

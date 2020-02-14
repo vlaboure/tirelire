@@ -1,0 +1,101 @@
+﻿@model IEnumerable<applicationTirelire.Models.Fournisseur>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Voir tous les fournisseurs","Afficher",new { @class="Button"})
+    @Html.ActionLink("Fournisseurs validés","Index",new { @class="Button"})
+
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nomFourn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descriptionFourn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telephoneFourn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paysFourn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.villeFourn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adresseFourn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codePostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emailFourn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Statut)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        //if (item.Statut != 0 || ViewBag.AffichFiche !=null)
+        //{
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomFourn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descriptionFourn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telephoneFourn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.paysFourn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.villeFourn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adresseFourn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codePostal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.emailFourn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statut)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdFourn }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdFourn })
+                    @if (item.Statut == 1)
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.IdFourn })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.IdFourn })
+                    }
+
+
+                </td>
+
+    </tr>
+
+
+    }
+
+</table>

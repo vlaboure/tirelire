@@ -1,0 +1,187 @@
+﻿@model applicationTirelire.Models.Produit
+
+@{
+    ViewBag.Title = "Details du produit";
+}
+
+
+<h2>Details  de  @Model.nomProd</h2>
+
+<div class="col-md-7">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.Categorie1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.Categorie1)
+        </dd>
+
+        <dt>
+            Nom fournisseur
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fournisseur.nomFourn)
+        </dd>
+
+        <dt>
+            Nom produit
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomProd)
+        </dd>
+
+        <dt>
+            Prix produit
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statusProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statusProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.couleur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.couleur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.capacite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.capacite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.poids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.poids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.largeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.largeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hauteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hauteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descriptionProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descriptionProd)
+        </dd>
+
+    </dl>
+
+</div>
+<div>
+    @if (Model.Avis.Where(a => a.statusAvis == 2).Count() > 0)
+    {
+        <button class="btn btn-default text-left" type="button" data-toggle="collapse" data-target="#avis">
+            Regarder les avis
+        </button>
+        <div class="collapse" id="avis">
+            @foreach (applicationTirelire.Models.Avi item in Model.Avis.Where(a => a.statusAvis == 2))
+            {
+                <div class="text-left">
+                    <p class="bold"><span class="prenom">@item.User.PrenomUser </span><span>(@item.note)</span></p>
+                    <p>@item.texte</p>
+                    <hr />
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<div class="col-md-3" style="text-align:center">
+    <div id="photo" class="bloc btn" data-toggle="collapse" data-target="#myModal">
+        <img class="photo-index-card-img" src="@Url.Content("~/Images/"+ Model.IdProd +"_"+ Model.UrlImage)" width="200" />
+    </div>
+
+    <div id="detail"></div>
+    <div class="btn btn-success" type="button" data-toggle="collapse" data-target="#produit" style="text-align:center;height:30px;">
+        Desrcription du produit
+    </div>
+    <div class="collapse modal-open" id="produit">
+        @Html.DisplayFor(model => model.descriptionProd)
+    </div>
+    <br />
+    <p>
+      
+        @if (((string[])ViewBag.Roles).Contains("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdProd });
+        <span>|</span>
+            @Html.ActionLink("Back to List", "Index");
+        }
+         else
+           {
+               @Html.ActionLink("Back to List", "Galerie");
+           }
+   </p>
+
+   <div>
+       <input type = "button" class="btn btn-light" value="Ajouter au panier"
+              onclick="location.href='@Url.Action("Ajouter", "Panier",new {id=Model.IdProd })'" />
+   </div>
+   <br />
+   <br />
+    @*ici c'est l'appel de la vue partielle pour afficher les produits de mm couleur*@
+@if(ViewBag.countor > 0)
+{
+        <div style="display:inline-block;" class="couleur">
+            @Html.Action("_DetailCouleur", "Produit", new { color = Model.couleur, id = Model.IdProd })
+        </div>
+    }
+
+</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <img style="position:center" src="@Url.Content("~/Images/" + Model.IdProd + "_" + Model.UrlImage)" />
+                </div>
+            </div>
+        </div>
+    </div>
+
