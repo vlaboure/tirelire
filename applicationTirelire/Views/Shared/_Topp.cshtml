@@ -4,28 +4,26 @@
 }
 
     <div class="text-center">
-        <h2>Top 5 des meilleurs produits</h2>
+        <h3>Top 5 des meilleurs produits</h3>
         @for (int i = 0; i < Model.ListIds.Count; i++)
         {
 
-            <div class="col-lg-2">
-                <div class="col-md-12">
-                    @Html.DisplayFor(p => p.ListIds[i].NomProd)
-                </div>
-                <div>
-                    <a href="~/Produit/Details/@Model.ListIds[i].IdProd">
-                        <img src="@Url.Content("~/Images/" + Model.ListIds[i].IdProd + "_" + Model.ListIds[i].Url)" width="100" />
-                    </a>
-                </div>
-                <div>
-                    <span>Quantités vendues :</span>
-                    @Html.DisplayFor(t => t.ListIds[i].Total)
-                </div>
-
+            <div class="col-md-10">
+                @Html.DisplayFor(p => p.ListIds[i].NomProd)
             </div>
+            <div class="col-md-10">
+                <a href="~/Produit/Details/@Model.ListIds[i].IdProd">
+                    <img src="@Url.Content("~/Images/" + Model.ListIds[i].IdProd + "_" + Model.ListIds[i].Url)" width="80" />
+                </a>
+            </div>
+            <div class="col-md-10">
+                <span>Quantités vendues :</span>
+                @Html.DisplayFor(t => t.ListIds[i].Total)
+            </div>
+
         }
 
-</div>
+    </div>
         @*<div class="carousel-inner">
             @for (int i = 0; i < Model.ListIds.Count; i++)
             {

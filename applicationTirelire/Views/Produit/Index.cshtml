@@ -9,10 +9,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
+<table class="table center-block" style="float:none;">
+    <tr class="text-center">
         <th>
-           <span>Image</span>
+            <span>Image</span>
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.nomProd)
         </th>
@@ -44,7 +45,7 @@
         <th>
             @Html.DisplayNameFor(model => model.hauteur)
         </th>
-        <th>
+        <th class="col-lg-1">
             @Html.DisplayNameFor(model => model.descriptionProd)
         </th>
         <th>
@@ -55,8 +56,8 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <tr class="text-center"style="text-align:justify;">
+            <td >
                 @*<img class="photo-index-card-img" src="@Url.Action("GetImage","Produit", new { idProduit = item.idProd })" />*@
                 <img class="photo-index-card-img" src="@Url.Content("~/Images/"+item.IdProd+"_"+item.UrlImage)" width="50" />
             </td>
@@ -91,7 +92,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.hauteur)
             </td>
-            <td>
+            <td class="col-lg-1">
                 @Html.DisplayFor(modelItem => item.descriptionProd)
             </td>
             <td>

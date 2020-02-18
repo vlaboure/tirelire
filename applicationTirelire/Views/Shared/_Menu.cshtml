@@ -1,49 +1,142 @@
-﻿    @***********
+﻿@***********
     Il faut ajouter les if pour les roles *@
-
+@using applicationTirelire.Models
     <div class="navbar navbar-inverse navbar-fixed-top" style="background:linear-gradient(#e8f9fc,white);">
-        <div class="container" style="text-align:left">
-            <div class="navbar-header">
+        @if (Request.IsAuthenticated)
+        {
+            try
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <ul class="nav navbar-nav navbar-right" style="margin-right:20px">
+                        <li>
+                            @Html.ActionLink("Bonjour " + ((User)Session["User"]).PrenomUser + " !", "MonCompte", "User", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></li>
+                    </ul>
+                }
+                @*<div class="container" style="text-align:left">
+                    <div class="navbar-header">
 
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <img src="~/Images/3_hippo.jpg" style="height:50px" />
-                        <span style="font-family:Rage;font-size:30px">A la bonne tirelire</span>
-                    </li>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                </div>*@
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <img src="~/Images/3_hippo.jpg" style="height:50px" />
+                            <span style="font-family:Rage;font-size:30px">A la bonne tirelire</span>
+                        </li>
 
-                    @if (((string[])ViewBag.Roles).Contains("Admin"))
-                    {
-                        <li>@Html.ActionLink("liste produits", "Index", "Produit")</li>
-                        <li>@Html.ActionLink("liste commandes", "lister", "Commande")</li>
+                        @if (((string[])ViewBag.Roles).Contains("Admin"))
+                        {
+                            <li>@Html.ActionLink("liste produits", "Index", "Produit")</li>
+                            <li>@Html.ActionLink("liste commandes", "lister", "Commande")</li>
 
-                        <li>@Html.ActionLink("Ajouter produit", "Create", "Produit")</li>
-                        <li>@Html.ActionLink("Listes des clients", "Lister", "User")</li>
+                            <li>@Html.ActionLink("Ajouter produit", "Create", "Produit")</li>
+                            <li>@Html.ActionLink("Listes des clients", "Lister", "User")</li>
 
-                    }
-                    else
-                    if (((string[])ViewBag.Roles).Contains("Moder"))
-                    {
-                        <li>@Html.ActionLink("lister les avis", "Index", "Avis")</li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("lister mes commandes", "listerCommandes", "User")</li>
-                        <li>@Html.ActionLink("Galerie", "Galerie", "Produit")</li>
-                    }
+                        }
+                        else
+                        if (((string[])ViewBag.Roles).Contains("Moder"))
+                        {
+                            <li>@Html.ActionLink("lister les avis", "Index", "Avis")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("lister mes commandes", "listerCommandes", "User")</li>
+                            <li>@Html.ActionLink("Galerie", "Galerie", "Produit")</li>
+                        }
 
 
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            }
+            catch
+            {
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("S'inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
+                @*<ul class="nav navbar-fixed-top">
+                    <li>@Html.ActionLink("Galerie", "Galerie", "Produit")</li>
+                </ul>*@
+            }
+        }
+        else
+        {
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("S'inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            </ul>
+            if (((string[])ViewBag.Roles).Contains("Admin"))
+            {
+                @*<ul class="nav navbar-fixed-top">
+                    <li>@Html.ActionLink("Lister produits", "Index", "Produit")</li>
+                </ul>*@
+            }
+            else
+            {
+                @*<ul class="nav navbar-fixed-top">
+                    <li>@Html.ActionLink("Galerie", "Galerie", "Produit")</li>
+                </ul>*@
+            }
+
+        }
     </div>
+
+@*<div class="navbar navbar-inverse navbar-fixed-top" style="background:linear-gradient(#e8f9fc,white);">
+    <div class="container" style="text-align:left">
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <img src="~/Images/3_hippo.jpg" style="height:50px" />
+                    <span style="font-family:Rage;font-size:30px">A la bonne tirelire</span>
+                </li>
+
+                @if (((string[])ViewBag.Roles).Contains("Admin"))
+                {
+                    <li>@Html.ActionLink("liste produits", "Index", "Produit")</li>
+                    <li>@Html.ActionLink("liste commandes", "lister", "Commande")</li>
+
+                    <li>@Html.ActionLink("Ajouter produit", "Create", "Produit")</li>
+                    <li>@Html.ActionLink("Listes des clients", "Lister", "User")</li>
+
+                }
+                else
+                if (((string[])ViewBag.Roles).Contains("Moder"))
+                {
+                    <li>@Html.ActionLink("lister les avis", "Index", "Avis")</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("lister mes commandes", "listerCommandes", "User")</li>
+                    <li>@Html.ActionLink("Galerie", "Galerie", "Produit")</li>
+                }
+
+
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>*@
+
