@@ -30,6 +30,7 @@ namespace applicationTirelire.Partial
         public double? Hauteur { get; set; }
         public int? IdFourn { get; set; }
         public int IdProd { get; set; }
+
         [Required(ErrorMessage = "Ce champ est obligatoire")]
         public double? Largeur { get; set; }
         [Required(ErrorMessage = "Ce champ est obligatoire")]
@@ -48,6 +49,6 @@ namespace applicationTirelire.Partial
         [Required(ErrorMessage = "Ce champ est obligatoire")]
         public int StatusProd { get; set; }
 
-        public int IdCategorie { get; set; }
+        public int? Idcategorie { get; set; }
     }
 }

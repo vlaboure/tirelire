@@ -30,7 +30,7 @@ namespace applicationTirelire.Controllers
             // remplissage d'un viewBag List avec les categories existantes
             IRepository<Categorie> repCategorie = new EFRepository<Categorie>();
             ViewBag.IdCategorie = repCategorie.Lister()
-                .Select(c => new SelectListItem { Value = c.IdCategorie.ToString(), Text = c.Categorie1 })
+                .Select(c => new SelectListItem { Value = c.IdCategorie.ToString(), Text = c._Categorie })
                 .ToList<SelectListItem>();
 
         }
@@ -54,6 +54,7 @@ namespace applicationTirelire.Controllers
             ViewBag.Roles = Roles.GetRolesForUser(User.Identity.Name);
             return View(prod);
         }
+
 
         public ActionResult _DetailCouleur(string color,int id)
         {
@@ -204,6 +205,37 @@ namespace applicationTirelire.Controllers
             {
                 return View();
             }
+        }
+
+        /// <summary>
+        /// afficher un menu avec des images pour les catégories 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Categorie()
+        {
+            IRepository<Categorie> repCateg = new EFRepository<Categorie>();
+            var categ = repProduits.Lister().GroupBy(c => c.Idcategorie).
+                Select(c => c.OrderBy(p => p.Idcategorie).FirstOrDefault()).ToList();
+            //liste temporaire ?? ...
+            List<ProdCat> listCategories = new List<ProdCat>();
+            //on remplit les  le model ProdCat
+            foreach (var liste in categ)
+            {
+                ProdCat item = new ProdCat();
+                item.IdProd = liste.IdProd;
+                item.Idcategorie = (int)liste.Idcategorie;
+                item._Categorie = liste.Categorie._Categorie;
+                item.UrlImg = repCateg.Trouver(item.Idcategorie).UrlImage;
+                //on ajoute à la liste temporaire
+                listCategories.Add(item);
+            }
+            //on crée l'objet liste qui servira pour l'affichage
+            ListProdCat model = new ListProdCat()
+            {
+                //la liste pointe sur la liste temporaire
+                ListCategories = listCategories
+            };
+            return View(model);
         }
 
         public ActionResult _Topp()

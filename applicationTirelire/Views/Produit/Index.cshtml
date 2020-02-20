@@ -9,8 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table center-block" style="float:none;">
-    <tr class="text-center">
+<table class="table text-center" >
+    <tr >
         <th>
             <span>Image</span>
         </th>
@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.nomProd)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Categorie.Categorie1)
+            @Html.DisplayNameFor(model => model.Categorie)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Fournisseur.nomFourn)
@@ -56,7 +56,7 @@
 
     @foreach (var item in Model)
     {
-        <tr class="text-center"style="text-align:justify;">
+        <tr class="text-center">
             <td >
                 @*<img class="photo-index-card-img" src="@Url.Action("GetImage","Produit", new { idProduit = item.idProd })" />*@
                 <img class="photo-index-card-img" src="@Url.Content("~/Images/"+item.IdProd+"_"+item.UrlImage)" width="50" />
@@ -65,7 +65,7 @@
                 @Html.DisplayFor(modelItem => item.nomProd)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categorie.Categorie1)
+                @Html.DisplayFor(modelItem => item.Categorie._Categorie)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Fournisseur.nomFourn)

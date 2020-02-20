@@ -1,0 +1,131 @@
+﻿@model applicationTirelire.Models.ListProdCat
+
+@{
+    ViewBag.Title = "Categorie";
+}
+
+<h2>Categorie</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+   <div class="col-md-11">
+        @for (int i = 0; i < Model.ListCategories.Count; i++)
+        {
+       <div class="col-md-4">
+           <div class="flip-box">
+               <div class="flip-box-inner">
+                   
+                   <div class="flip-box-front">
+                       <h4 class="card-title">@Model.ListCategories[i]._Categorie</h4>
+                       <a href="~/Produit/Details/@Model.ListCategories[i].IdProd" style="text-align:center;">
+                           <img src="@Url.Content("~/Images/" + @Model.ListCategories[i].UrlImg)" height="220" />
+                       </a>
+                       <br />
+                       <h7 class="card-text">
+                           Pour accéder à la catégorie
+                           <br />@Model.ListCategories[i]._Categorie cliquer sur la photo
+                       </h7>
+                   </div>
+                   <div class="flip-box-back">
+                       <h2>Back Side</h2>
+                   </div>
+
+
+                   
+                   <a href="#" class="card-link"></a>
+
+               </div>
+
+           </div>
+       </div>
+
+
+        }
+    </div>
+
+
+
+    @*<table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nomProd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PrixProd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.statusProd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UrlImage)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.couleur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.capacite)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.poids)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.longeur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.largeur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.hauteur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.descriptionProd)
+                    </th>
+                    <th></th>
+                </tr>
+
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nomProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrixProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.statusProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UrlImage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.couleur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.capacite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.poids)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.longeur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.largeur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hauteur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descriptionProd)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.IdProd }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.IdProd }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.IdProd })
+                    </td>
+                </tr>
+            }
+
+            </table>*@

@@ -22,7 +22,8 @@ namespace applicationTirelire.Models
         [Column("Categorie")]
         [StringLength(35)]
         [Display(Name ="Categorie")]
-        public string Categorie1 { get; set; }
+        public string _Categorie { get; set; }
+        public string UrlImage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produit> Produits { get; set; }

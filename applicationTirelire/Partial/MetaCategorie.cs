@@ -2,7 +2,8 @@
 {
     public interface MetaCategorie
     {
-        string Categorie_ { get; set; }
+        string _Categorie { get; set; }
         int IdCategorie { get; set; }
+        string UrlImage { get; set; }
     }
 }

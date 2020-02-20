@@ -20,6 +20,11 @@ namespace applicationTirelire
                 defaults: new { controller = "Produit", action = "Galerie"}
             );
             routes.MapRoute(
+               name: "Detail",
+               url: "Produit/Details/{id}",
+               defaults: new { controller = "Produit", action = "Details" }
+           );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Produit", action = "Galerie", id = UrlParameter.Optional }
