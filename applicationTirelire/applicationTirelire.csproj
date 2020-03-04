@@ -248,6 +248,8 @@
     <Content Include="Images\9_casino.jpg" />
     <Content Include="Images\Categ_Banane.png" />
     <Content Include="Images\categ_cochon.png" />
+    <Content Include="Images\tirelire-bleue.jpg" />
+    <Content Include="Images\tirelire-cochon-chic.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -432,6 +434,7 @@
     <Content Include="Views\User\Lister.cshtml" />
     <Content Include="Views\Shared\_TopUser.cshtml" />
     <Content Include="Views\Produit\Categorie.cshtml" />
+    <Content Include="Views\Shared\_AffichProd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Navigation\" />

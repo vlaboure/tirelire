@@ -36,7 +36,7 @@
         </tr>
         @foreach (var item in Model)
         {
-    <tr>
+    <tr id="@(item.IdAvis)etat">
         <td>
             <image src="@Url.Content("~/Images/" + item.IdProd + "_" + item.Produit.UrlImage)" height="30" )"></image>
         </td>
@@ -55,7 +55,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.texte)
         </td>
-        <td id="@(item.IdAvis)etat">
+        <td >
             @(((applicationTirelire.Outil.EtatsAvis)item.statusAvis).ToString())
         </td>
         <td>

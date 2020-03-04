@@ -1,4 +1,5 @@
 ﻿@model applicationTirelire.Models.Produit
+@using applicationTirelire.Models
 
 @{
     ViewBag.Title = "Details du produit";
@@ -129,11 +130,11 @@
 
 <div class="col-md-3" style="text-align:center">
     <div id="photo" class="bloc btn" data-toggle="collapse" data-target="#myModal">
-        <img class="photo-index-card-img" src="@Url.Content("~/Images/"+ Model.IdProd +"_"+ Model.UrlImage)" width="200" />
+        <img class="photo-index-card-img" src="@Url.Content("~/Images/" + Model.IdProd + "_" + Model.UrlImage)" width="200" />
     </div>
 
     <div id="detail"></div>
-    <div class="btn btn-success" type="button" data-toggle="collapse" data-target="#produit" style="text-align:center;height:30px;">
+    <div class="btn btn-link" type="button" data-toggle="collapse" data-target="#produit" style="text-align:center;height:30px;">
         Desrcription du produit
     </div>
     <div class="collapse modal-open" id="produit">
@@ -141,28 +142,36 @@
     </div>
     <br />
     <p>
-      
+
         @if (((string[])ViewBag.Roles).Contains("Admin"))
         {
             @Html.ActionLink("Edit", "Edit", new { id = Model.IdProd });
-        <span>|</span>
+            <span>|</span>
             @Html.ActionLink("Back to List", "Index");
         }
-         else
-           {
-               @Html.ActionLink("Back to List", "Galerie");
-           }
-   </p>
+        else
+        {
+            @Html.ActionLink("Back to List", "Galerie");
+        }
+    </p>
+    @if (Session["User"] != null)
+    {
+        if (!((string[])ViewBag.Roles).Contains("Admin") || !((string[])ViewBag.Roles).Contains("Moder"))
+        {
+            <div>
+                <input type="button" class="btn btn-success" value="Ajouter au panier"
+                       onclick="location.href='@Url.Action("Ajouter", "Panier",new {id=Model.IdProd })'" />
+            </div>
+        }
 
-   <div>
-       <input type = "button" class="btn btn-light" value="Ajouter au panier"
-              onclick="location.href='@Url.Action("Ajouter", "Panier",new {id=Model.IdProd })'" />
-   </div>
-   <br />
-   <br />
+    }
+
+
+    <br />
+    <br />
     @*ici c'est l'appel de la vue partielle pour afficher les produits de mm couleur*@
-@if(ViewBag.countor > 0)
-{
+    @if (ViewBag.countor > 0)
+    {
         <div style="display:inline-block;" class="couleur">
             @Html.Action("_DetailCouleur", "Produit", new { color = Model.couleur, id = Model.IdProd })
         </div>

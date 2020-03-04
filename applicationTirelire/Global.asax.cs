@@ -21,6 +21,7 @@ namespace applicationTirelire
         protected void Session_Start()
         {
             Session["Panier"] = new Commande();
+            //Session["User"] = new User();
         }
     }
 }

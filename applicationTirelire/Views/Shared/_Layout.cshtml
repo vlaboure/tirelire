@@ -5,27 +5,44 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mon application ASP.NET</title>
+
+    @*//
+        /// ordre à respecter !!!! 
+    //*@
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery-3.4.1.js")
+
+    @*//
+    ///
+    //*@
+
 </head>
 <body>
     @***********
         menu*@
 
-    <div class="container col-lg-12 ">
+    <div class="container col-md-12 ">
         @{Html.RenderAction("_Menu", "Navigation"); }
         @RenderBody()
         <hr />
         <footer>
         </footer>
     </div>
-    @Scripts.Render("~/Scripts/jquery-3.4.1.js")
-    @Scripts.Render("~/bundles/jquery")
+
+    @*//
+        /// ordre à respecter !!!! 
+    //*@
 
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
-
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
+
+    @*//
+        ///
+    //*@
 
 
     @RenderSection("scripts", required: false)

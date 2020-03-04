@@ -1,21 +1,32 @@
 ﻿
 body {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
+    margin:10px;
+}
+/*footer{
+    padding:30px;
+}*/
+.pannier {
+    height: 90%;
+    border: solid blue 2px;
+    margin: 10px;
 }
 
+.tot {
+    margin-right: 30px;
+}
 .body-content {
-
     padding-left: 15px;
     padding-right: 15px;
 }
 th {
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     width: 10px;
 }
 td {
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     margin:auto;
     width: 10px;
@@ -24,12 +35,9 @@ tr {
     text-align: justify;
     width: 10px;
 }
-.card{
-    border:1px solid blue;
-}
-.galerie {
+.Galerie {
     background: linear-gradient(#e8f9fc,white);
-    padding:10px;
+    padding: 5px;
     border-radius: 3px 4px;
 }
 .couleur {
@@ -56,11 +64,30 @@ textarea {
 }
 
 
+.card {
+    border: 1px solid blue;
+}
 
+.card-text {
+    font-family: Rage;
+    font-size: 35px;
+}
+
+
+
+.image{
+    padding:5px;
+}
+.Categ {
+    background: none;
+    padding: 10px;
+    border-radius: 3px 4px;
+}
 .flip-box {
     background-color: transparent;
-    width: 310px;
-    height: 400px;
+    width: 350px;
+    padding:5px;
+    height: 500px;
     border: 1px solid #f1f1f1;
     perspective: 1000px;
 }
@@ -69,6 +96,7 @@ textarea {
     position: relative;
     width: 100%;
     height: 100%;
+    margin:auto;
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
@@ -89,16 +117,17 @@ textarea {
 .flip-box-front {
     background : linear-gradient(rgba(197, 246, 248,0.8),rgba(253, 242, 215,0.4));
     color: black;
-    font-size:15px;
+    font-size:25px;
 }
 
 .flip-box-back {
-    background-color: dodgerblue;
+    background-color:darkgrey;
     color: white;
+    font-size: 20px;
     transform: rotateY(180deg);
 }
 
-.card-text {
-    font-family:Rage;
-    font-size:30px;
+.list{
+    padding:10px;
+    margin-left:5px;
 }

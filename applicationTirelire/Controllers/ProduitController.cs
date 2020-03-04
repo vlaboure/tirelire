@@ -42,6 +42,9 @@ namespace applicationTirelire.Controllers
 
         public ActionResult Galerie()
         {
+            ViewBag.Provenance = "Prod";
+            //ViewBag.col = 8;
+            //ViewBag.Style = "Galerie";
             return View(repProduits.Lister().Where(p => p.statusProd == 1));
         }
 
@@ -62,6 +65,7 @@ namespace applicationTirelire.Controllers
             //IEnumerable<Produit> produits;
           //  produits = repProduits.Lister();
           //  produits = repProduits.Lister().Where(p => p.couleur == color);
+
             return PartialView("_DetailCouleur", repProduits.Lister().Where(p => p.couleur == color && p.statusProd!=0 && p.IdProd!=id).Take(4));
         }
 
@@ -77,12 +81,7 @@ namespace applicationTirelire.Controllers
         {
             IRepository<DetailCommande> repCmd = new EFRepository<DetailCommande>();
             IRepository<Produit> repProd = new EFRepository<Produit>();
-            //var res = db.DetailCommandes.Join(db.Produits, d => d.idCommande, p => p.idProd,
-            //    (d, p) => new { d, p }).Select(q => new AddUserToRole
-            //    {
-            //        idProd=d.p.idprod,
-            //    });
-   
+
             return View();
            
             //var query = products.GroupBy(product => new { product.Date, product.Ref, product.Nom }, (group, products)
@@ -129,7 +128,7 @@ namespace applicationTirelire.Controllers
             }
         }
 
-        // GET: Produti/Edit/5
+        // GET: Produti/Edit/5DeleteConfirm
         public ActionResult Edit(int id)
         {
             ListeFournisseurs();
@@ -207,6 +206,15 @@ namespace applicationTirelire.Controllers
             }
         }
 
+        public ActionResult ProdCateg(int idCateg) 
+        {
+            ViewBag.Provenance = "Cat";
+            ViewBag.col = 12;
+            ViewBag.Style = "Categ";
+            var prodCateg = repProduits.Lister().Where(p => p.Idcategorie == idCateg && p.statusProd != 0);
+            return View("_AffichProd",repProduits.Lister().Where(p => p.Idcategorie == idCateg && p.statusProd != 0));
+        }
+
         /// <summary>
         /// afficher un menu avec des images pour les catégories 
         /// </summary>
@@ -216,13 +224,13 @@ namespace applicationTirelire.Controllers
             IRepository<Categorie> repCateg = new EFRepository<Categorie>();
             var categ = repProduits.Lister().GroupBy(c => c.Idcategorie).
                 Select(c => c.OrderBy(p => p.Idcategorie).FirstOrDefault()).ToList();
+           
             //liste temporaire ?? ...
             List<ProdCat> listCategories = new List<ProdCat>();
             //on remplit les  le model ProdCat
             foreach (var liste in categ)
             {
                 ProdCat item = new ProdCat();
-                item.IdProd = liste.IdProd;
                 item.Idcategorie = (int)liste.Idcategorie;
                 item._Categorie = liste.Categorie._Categorie;
                 item.UrlImg = repCateg.Trouver(item.Idcategorie).UrlImage;

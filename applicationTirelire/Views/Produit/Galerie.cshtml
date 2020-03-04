@@ -9,35 +9,23 @@
         @Html.ActionLink("Create New", "Create")
     </p>*@
 
+    @************ A METTRE DANS UN PARTIAL*@ 
+
+    <div class="col-md-8 Galerie" style="margin:0">
+        @if (ViewBag.Provenance != "Cat")
+        {
+            <h3 class="text-center">Galerie</h3>
+        }
+
+        @Html.Partial("_AffichProd");
 
 
-<div class="col-md-8 galerie"style="margin:0">
-    <h3 class="text-center">Galerie</h3>
+    </div>
 
-    @foreach (var item in Model)
+    @if (ViewBag.Provenance != "Cat")
     {
-        <div class="col-md-3 photos">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="~/Produit/Details/@item.IdProd">
-                        <img src="@Url.Content("~/Images/" + item.IdProd + "_" + item.UrlImage)" height="150" />
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8" style="text-align:center"> @Html.DisplayFor(modelItem => item.nomProd)</div>
-                <div class="text-danger col-md-4" style="text-align:left"> @Html.DisplayFor(modelItem => item.PrixProd)€</div>
-            </div>
-
-            @*<div class="row aler">
-                    <div class="col-md-3"></div>
-                    @Html.ActionLink("Details", "Details", new { id = item.IdProd }, new { @class = "alert-dismissable col-md-4", @style = "text-align:center" })
-                    <div class="col-md-3"></div>
-                </div>*@
+        <div class="col-md-3 couleur">
+            @Html.Action("_Topp", "Produit");
         </div>
     }
 
- </div>
-    <div class="col-md-3 couleur">
-        @Html.Action("_Topp", "Produit")
-    </div>

@@ -7,7 +7,6 @@ namespace applicationTirelire.Models
 {
     public class ProdCat
     {
-        public int IdProd { get; set; }
         public int Idcategorie { get; set; }
         public string _Categorie { get; set; }
         public string UrlImg { get; set; }

@@ -432,6 +432,8 @@ namespace applicationTirelire.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+  
+                Session["User"] =null;
             return RedirectToAction("Galerie", "Produit");
         }
 

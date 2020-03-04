@@ -37,7 +37,7 @@ namespace applicationTirelire.Controllers
                     Content = ((EtatsAvis)aviRefuse.statusAvis).ToString()
                 };
             }
-            [Authorize(Roles="Mod")]
+            [Authorize(Roles="Moder")]
             public ContentResult Approuver(int id)
             {
                 Avi avisApprouve = repAvi.Trouver(id);

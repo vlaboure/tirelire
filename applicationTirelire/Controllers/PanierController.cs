@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace applicationTirelire.Controllers
 {
+   
     public class PanierController : Controller
     {
 
@@ -28,7 +29,6 @@ namespace applicationTirelire.Controllers
             //Session["fraisLivr"] = 0;
         }
 
-      
 
         public ActionResult Ajouter(int id)
         {
